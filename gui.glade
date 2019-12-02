@@ -230,6 +230,7 @@
             <property name="model">todo_store</property>
             <property name="reorderable">True</property>
             <property name="search_column">2</property>
+            <property name="rubber_banding">True</property>
             <property name="enable_grid_lines">both</property>
             <child internal-child="selection">
               <object class="GtkTreeSelection"/>
@@ -238,10 +239,11 @@
               <object class="GtkTreeViewColumn">
                 <property name="resizable">True</property>
                 <property name="title" translatable="yes">Done</property>
+                <property name="clickable">True</property>
                 <property name="reorderable">True</property>
                 <property name="sort_column_id">0</property>
                 <child>
-                  <object class="GtkCellRendererToggle"/>
+                  <object class="GtkCellRendererToggle" id="cell_done"/>
                   <attributes>
                     <attribute name="active">0</attribute>
                   </attributes>
@@ -252,11 +254,14 @@
               <object class="GtkTreeViewColumn">
                 <property name="resizable">True</property>
                 <property name="title" translatable="yes">Priority</property>
+                <property name="clickable">True</property>
                 <property name="sort_column_id">1</property>
                 <child>
-                  <object class="GtkCellRendererCombo">
+                  <object class="GtkCellRendererCombo" id="cell_pri">
                     <property name="editable">True</property>
                     <property name="model">priority_store</property>
+                    <property name="text_column">0</property>
+                    <signal name="changed" handler="on_pri_changed" swapped="no"/>
                   </object>
                   <attributes>
                     <attribute name="text">1</attribute>
@@ -268,9 +273,10 @@
               <object class="GtkTreeViewColumn">
                 <property name="resizable">True</property>
                 <property name="title" translatable="yes">Text</property>
+                <property name="clickable">True</property>
                 <property name="sort_column_id">2</property>
                 <child>
-                  <object class="GtkCellRendererText">
+                  <object class="GtkCellRendererText" id="cell_text">
                     <property name="editable">True</property>
                   </object>
                   <attributes>
@@ -283,9 +289,10 @@
               <object class="GtkTreeViewColumn">
                 <property name="resizable">True</property>
                 <property name="title" translatable="yes">Due Date</property>
+                <property name="clickable">True</property>
                 <property name="sort_column_id">4</property>
                 <child>
-                  <object class="GtkCellRendererText">
+                  <object class="GtkCellRendererText" id="cell_due">
                     <property name="editable">True</property>
                   </object>
                   <attributes>
@@ -298,9 +305,10 @@
               <object class="GtkTreeViewColumn">
                 <property name="resizable">True</property>
                 <property name="title" translatable="yes">Creation Date</property>
+                <property name="clickable">True</property>
                 <property name="sort_column_id">5</property>
                 <child>
-                  <object class="GtkCellRendererText">
+                  <object class="GtkCellRendererText" id="cell_creation">
                     <property name="editable">True</property>
                   </object>
                   <attributes>
@@ -313,9 +321,10 @@
               <object class="GtkTreeViewColumn">
                 <property name="resizable">True</property>
                 <property name="title" translatable="yes">Completion Date</property>
+                <property name="clickable">True</property>
                 <property name="sort_column_id">6</property>
                 <child>
-                  <object class="GtkCellRendererText">
+                  <object class="GtkCellRendererText" id="cell_completion">
                     <property name="editable">True</property>
                   </object>
                   <attributes>
