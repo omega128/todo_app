@@ -232,6 +232,8 @@
                 <child>
                   <object class="GtkCellRendererCombo" id="cell_pri">
                     <property name="editable">True</property>
+                    <property name="width_chars">3</property>
+                    <property name="has_entry">False</property>
                     <property name="model">pri_store</property>
                     <property name="text_column">0</property>
                     <signal name="changed" handler="on_pri_changed" swapped="no"/>

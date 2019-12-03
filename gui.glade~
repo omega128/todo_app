@@ -227,10 +227,13 @@
                 <property name="resizable">True</property>
                 <property name="title" translatable="yes">Priority</property>
                 <property name="clickable">True</property>
+                <property name="reorderable">True</property>
                 <property name="sort_column_id">1</property>
                 <child>
                   <object class="GtkCellRendererCombo" id="cell_pri">
                     <property name="editable">True</property>
+                    <property name="width_chars">3</property>
+                    <property name="has_entry">False</property>
                     <property name="model">pri_store</property>
                     <property name="text_column">0</property>
                     <signal name="changed" handler="on_pri_changed" swapped="no"/>
@@ -246,6 +249,7 @@
                 <property name="resizable">True</property>
                 <property name="title" translatable="yes">Text</property>
                 <property name="clickable">True</property>
+                <property name="reorderable">True</property>
                 <property name="sort_column_id">2</property>
                 <child>
                   <object class="GtkCellRendererText" id="cell_text">
@@ -264,6 +268,7 @@
                 <property name="resizable">True</property>
                 <property name="title" translatable="yes">Due Date</property>
                 <property name="clickable">True</property>
+                <property name="reorderable">True</property>
                 <property name="sort_column_id">4</property>
                 <child>
                   <object class="GtkCellRendererText" id="cell_due">
@@ -281,6 +286,7 @@
                 <property name="resizable">True</property>
                 <property name="title" translatable="yes">Creation Date</property>
                 <property name="clickable">True</property>
+                <property name="reorderable">True</property>
                 <property name="sort_column_id">5</property>
                 <child>
                   <object class="GtkCellRendererText" id="cell_creation">
@@ -298,6 +304,7 @@
                 <property name="resizable">True</property>
                 <property name="title" translatable="yes">Completion Date</property>
                 <property name="clickable">True</property>
+                <property name="reorderable">True</property>
                 <property name="sort_column_id">6</property>
                 <child>
                   <object class="GtkCellRendererText" id="cell_completion">
