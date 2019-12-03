@@ -117,9 +117,6 @@
       </row>
     </data>
   </object>
-  <object class="GtkTreeModelFilter" id="search_store">
-    <property name="child_model">todo_store</property>
-  </object>
   <object class="GtkWindow" id="main_window">
     <property name="can_focus">False</property>
     <property name="icon_name">dialog-ok</property>
@@ -197,8 +194,9 @@
           <object class="GtkTreeView" id="tasks_treeview">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="model">search_store</property>
+            <property name="model">todo_store</property>
             <property name="reorderable">True</property>
+            <property name="enable_search">False</property>
             <property name="search_column">2</property>
             <property name="rubber_banding">True</property>
             <property name="enable_grid_lines">both</property>
@@ -269,7 +267,7 @@
                 <property name="title" translatable="yes">Due Date</property>
                 <property name="clickable">True</property>
                 <property name="reorderable">True</property>
-                <property name="sort_column_id">4</property>
+                <property name="sort_column_id">3</property>
                 <child>
                   <object class="GtkCellRendererText" id="cell_due">
                     <property name="editable">True</property>
@@ -287,7 +285,7 @@
                 <property name="title" translatable="yes">Creation Date</property>
                 <property name="clickable">True</property>
                 <property name="reorderable">True</property>
-                <property name="sort_column_id">5</property>
+                <property name="sort_column_id">4</property>
                 <child>
                   <object class="GtkCellRendererText" id="cell_creation">
                     <property name="editable">True</property>
@@ -305,7 +303,7 @@
                 <property name="title" translatable="yes">Completion Date</property>
                 <property name="clickable">True</property>
                 <property name="reorderable">True</property>
-                <property name="sort_column_id">6</property>
+                <property name="sort_column_id">5</property>
                 <child>
                   <object class="GtkCellRendererText" id="cell_completion">
                     <property name="editable">True</property>
@@ -326,5 +324,8 @@
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkTreeModelFilter" id="search_store">
+    <property name="child_model">todo_store</property>
   </object>
 </interface>
