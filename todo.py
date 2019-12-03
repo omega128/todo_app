@@ -21,8 +21,8 @@ class Handler:
 	def on_main_window_destroy(self, *args):
 		Gtk.main_quit()
 		
-	def on_add_clicked (self, *args):
-		pass
+	def on_add_clicked (self, button):
+		todo_store.append([False, "", "", "", "", ""])
 		
 	def on_save_as_clicked (self, *args):
 		pass
