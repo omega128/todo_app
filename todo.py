@@ -12,17 +12,26 @@ from gi.repository import Gtk
 
 builder = Gtk.Builder()
 builder.add_from_file("gui.glade")
+
+# Quick object references for later:
 window = builder.get_object("main_window")
 todo_store = builder.get_object("todo_store")
 search_store = builder.get_object("todo_store")
 pri_store = builder.get_object("pri_store")
+tasks_treeview = builder.get_object("tasks_treeview")
 
 class Handler:
 	def on_main_window_destroy(self, *args):
 		Gtk.main_quit()
 		
 	def on_add_clicked (self, button):
-		todo_store.append([False, "", "", "", "", ""])
+		i = todo_store.append([False, "", "", "", "", ""])
+		selection = tasks_treeview.get_selection()
+		selection.select_iter(i)
+		#path = Gtk.TreePath.new_from_string(i.to_string())
+		#tasks_treeview.set_cursor(path=path)
+		# TODO: use i to move treeview selection to the new task
+		
 		
 	def on_save_as_clicked (self, *args):
 		pass

@@ -106,16 +106,6 @@
       <!-- column-name completion_date -->
       <column type="gchararray"/>
     </columns>
-    <data>
-      <row>
-        <col id="0">False</col>
-        <col id="1" translatable="yes"/>
-        <col id="2" translatable="yes"/>
-        <col id="3" translatable="yes"/>
-        <col id="4" translatable="yes"/>
-        <col id="5" translatable="yes"/>
-      </row>
-    </data>
   </object>
   <object class="GtkWindow" id="main_window">
     <property name="can_focus">False</property>
