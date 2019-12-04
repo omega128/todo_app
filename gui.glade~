@@ -118,14 +118,11 @@
         <property name="subtitle" translatable="yes">todo.txt</property>
         <property name="show_close_button">True</property>
         <child>
-          <object class="GtkButton">
-            <property name="label">gtk-add</property>
+          <object class="GtkEntry" id="quick_add_entry">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="use_stock">True</property>
-            <property name="always_show_image">True</property>
-            <signal name="clicked" handler="on_add_clicked" swapped="no"/>
+            <property name="primary_icon_stock">gtk-add</property>
+            <property name="placeholder_text" translatable="yes">Quick Add</property>
           </object>
         </child>
         <child>
@@ -136,9 +133,11 @@
             <property name="primary_icon_name">edit-find-symbolic</property>
             <property name="primary_icon_activatable">False</property>
             <property name="primary_icon_sensitive">False</property>
+            <property name="placeholder_text" translatable="yes">Search</property>
             <signal name="search-changed" handler="on_search_changed" swapped="no"/>
           </object>
           <packing>
+            <property name="pack_type">end</property>
             <property name="position">1</property>
           </packing>
         </child>
@@ -154,7 +153,7 @@
           </object>
           <packing>
             <property name="pack_type">end</property>
-            <property name="position">2</property>
+            <property name="position">1</property>
           </packing>
         </child>
         <child>
@@ -169,7 +168,7 @@
           </object>
           <packing>
             <property name="pack_type">end</property>
-            <property name="position">2</property>
+            <property name="position">1</property>
           </packing>
         </child>
       </object>
@@ -318,5 +317,8 @@
   </object>
   <object class="GtkTreeModelFilter" id="search_store">
     <property name="child_model">todo_store</property>
+  </object>
+  <object class="GtkTreeModelSort" id="sorted_search_store">
+    <property name="model">search_store</property>
   </object>
 </interface>

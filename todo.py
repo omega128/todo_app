@@ -18,23 +18,39 @@ builder.add_from_file("gui.glade")
 # Quick object references for later:
 window = builder.get_object("main_window")
 todo_store = builder.get_object("todo_store")
-search_store = builder.get_object("todo_store")
 pri_store = builder.get_object("pri_store")
+sorted_search_store = builder.get_object("sorted_search_store")
 tasks_treeview = builder.get_object("tasks_treeview")
 
 class Handler:
 	def on_main_window_destroy(self, *args):
 		Gtk.main_quit()
 		
-	def on_add_clicked (self, button):
-		"""adds a new task, and moves focus to it"""
+	def on_quick_add_clicked (self, entry):
+		"""Quickly add a new task to the list"""
+		
+		# TODO: fully parse new task text before adding
+		text = entry.get_text()
 		
 		# TODO: make creation dates optional in preferences
 		dt = datetime.date.today().isoformat()
-		
-		i = todo_store.append([False, "", "", "", dt, ""])
+
+		# TODO: add support for filtering and sorting list.
+		# Create new task
+		child_i = todo_store.append([False, "", text, "", dt, ""])
+
+		# Select the new entry after we make it.
 		selection = tasks_treeview.get_selection()
-		selection.select_iter(i)
+		selection.select_iter(child_i)
+		
+		# clear the entry when we're done
+		entry.set_text ("")
+
+			
+	def on_delete_clicked (self, button):
+		"""deletes currently selected task"""
+		selection = tasks_treeview.get_selection()
+		#selection.
 		
 	def on_save_as_clicked (self, *args):
 		pass
