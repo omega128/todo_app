@@ -11,6 +11,7 @@ import datetime
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
+from gi.repository import Gdk
 
 builder = Gtk.Builder()
 builder.add_from_file("gui.glade")
@@ -25,7 +26,13 @@ tasks_treeview = builder.get_object("tasks_treeview")
 class Handler:
 	def on_main_window_destroy(self, *args):
 		Gtk.main_quit()
+
+	def on_tasks_treeview_key_release (self, view, event):
+		keyname = Gdk.keyval_name(event.keyval)
+		if keyname == "Delete":
+			self.on_delete_clicked ()
 		
+				
 	def on_quick_add_clicked (self, entry):
 		"""Quickly add a new task to the list"""
 		
@@ -35,22 +42,26 @@ class Handler:
 		# TODO: make creation dates optional in preferences
 		dt = datetime.date.today().isoformat()
 
-		# TODO: add support for filtering and sorting list.
+		# TODO: add support for filtering and sorting list, by converting
+		# child iterators to sorted iterators.
+
 		# Create new task
 		child_i = todo_store.append([False, "", text, "", dt, ""])
 
-		# Select the new entry after we make it.
+		# Select the new task after we make it.
 		selection = tasks_treeview.get_selection()
 		selection.select_iter(child_i)
 		
-		# clear the entry when we're done
+		# clear the entry box when we're done
 		entry.set_text ("")
 
-			
-	def on_delete_clicked (self, button):
+		
+	def on_delete_clicked (self):
 		"""deletes currently selected task"""
-		selection = tasks_treeview.get_selection()
-		#selection.
+		#selection = tasks_treeview.get_selection()
+		model, i = tasks_treeview.get_selection().get_selected()
+		if i is not None:
+			model.remove(i)
 		
 	def on_save_as_clicked (self, *args):
 		pass
