@@ -77,9 +77,11 @@ class Handler:
 
 	def on_done_toggled (self, cell, path):
 		"""toggles a given task's done status"""
+		
 		done = not todo_store[path][0]
 		todo_store[path][0] = done
 		
+		# TODO: make completion dates optional in preferences
 		# if task is complete, set completion date to the current date.
 		if done:
 			dt = datetime.date.today().isoformat()
