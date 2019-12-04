@@ -6,6 +6,8 @@
 # Project		Todo App
 ###
 
+import datetime
+
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
@@ -25,13 +27,14 @@ class Handler:
 		Gtk.main_quit()
 		
 	def on_add_clicked (self, button):
-		i = todo_store.append([False, "", "", "", "", ""])
+		"""adds a new task, and moves focus to it"""
+		
+		# TODO: make creation dates optional in preferences
+		dt = datetime.date.today().isoformat()
+		
+		i = todo_store.append([False, "", "", "", dt, ""])
 		selection = tasks_treeview.get_selection()
 		selection.select_iter(i)
-		#path = Gtk.TreePath.new_from_string(i.to_string())
-		#tasks_treeview.set_cursor(path=path)
-		# TODO: use i to move treeview selection to the new task
-		
 		
 	def on_save_as_clicked (self, *args):
 		pass
@@ -68,10 +71,9 @@ class Handler:
 	def on_completion_edited (self, cell, path, text):
 		"""changes a task's completion date"""
 		todo_store[path][5] = text
-	
+
 
 builder.connect_signals(Handler())
-
 window.show_all()
 Gtk.main()
 
