@@ -30,7 +30,6 @@ class Handler:
 		keyname = Gdk.keyval_name(event.keyval)
 		if keyname == "Delete":
 			self.on_delete_clicked ()
-		
 				
 	def on_quick_add_clicked (self, entry):
 		"""Quickly add a new task to the list"""
@@ -57,6 +56,7 @@ class Handler:
 		
 	def on_delete_clicked (self):
 		"""deletes currently selected task"""
+		# TODO: (a) prevent this from being called WHILE EDITING
 		# TODO: allow deletions of multiple selected tasks
 		model, i = tasks_treeview.get_selection().get_selected()
 		if i is not None:
@@ -77,7 +77,13 @@ class Handler:
 
 	def on_done_toggled (self, cell, path):
 		"""toggles a given task's done status"""
-		todo_store[path][0] = not todo_store[path][0]
+		done = not todo_store[path][0]
+		todo_store[path][0] = done
+		
+		# if task is complete, set completion date to the current date.
+		if done:
+			dt = datetime.date.today().isoformat()
+			todo_store[path][5] = dt
 
 	def on_pri_changed (self, cell, path, tree_iter):
 		"""changes the priority of a task"""
