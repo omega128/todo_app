@@ -26,12 +26,6 @@ class Handler:
 	def on_main_window_destroy(self, *args):
 		Gtk.main_quit()
 
-	def on_tasks_treeview_key_release (self, view, event):
-		keyname = Gdk.keyval_name(event.keyval)
-		# TODO: remove and replace with accelators
-		#if keyname == "Delete":
-		#	self.on_delete_clicked ()
-				
 	def on_quick_add_clicked (self, entry):
 		"""Quickly add a new task to the list"""
 		
@@ -57,9 +51,11 @@ class Handler:
 		
 	def on_delete_clicked (self, button):
 		"""deletes currently selected tasks"""
+		# TODO: fix bug where menu won't work, while keyboard shortcut does
+
 		# make sure the Treeview has focus, so we don't delete tasks while
-		# editing text
-		if tasks_treeview.has_focus():
+		# editing text or something of that ilk
+		if tasks_treeview.has_focus() or button.has_focus():
 			model, paths = tasks_treeview.get_selection().get_selected_rows()
 			for path in paths:
 				i = model.get_iter(path)
