@@ -57,10 +57,13 @@ class Handler:
 		
 	def on_delete_clicked (self, button):
 		"""deletes currently selected tasks"""
-		model, paths = tasks_treeview.get_selection().get_selected_rows()
-		for path in paths:
-			i = model.get_iter(path)
-			model.remove(i)
+		# make sure the Treeview has focus, so we don't delete tasks while
+		# editing text
+		if tasks_treeview.has_focus():
+			model, paths = tasks_treeview.get_selection().get_selected_rows()
+			for path in paths:
+				i = model.get_iter(path)
+				model.remove(i)
 		
 	def on_save_as_clicked (self, *args):
 		# TODO: implement Save As to save task list to disk
