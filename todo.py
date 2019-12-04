@@ -2,7 +2,7 @@
 ###
 # Filename		todo.py
 # Author		Kristopher Chambers
-# Updated		2019-12-01
+# Updated		2019-12-03
 # Project		Todo App
 ###
 
@@ -13,10 +13,9 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from gi.repository import Gdk
 
+# Quick object references for later:
 builder = Gtk.Builder()
 builder.add_from_file("gui.glade")
-
-# Quick object references for later:
 window = builder.get_object("main_window")
 todo_store = builder.get_object("todo_store")
 pri_store = builder.get_object("pri_store")
@@ -58,20 +57,24 @@ class Handler:
 		
 	def on_delete_clicked (self):
 		"""deletes currently selected task"""
-		#selection = tasks_treeview.get_selection()
+		# TODO: allow deletions of multiple selected tasks
 		model, i = tasks_treeview.get_selection().get_selected()
 		if i is not None:
 			model.remove(i)
 		
 	def on_save_as_clicked (self, *args):
+		# TODO: implement Save As to save task list to disk
 		pass
 		
 	def on_open_clicked (self, *args):
+		# TODO: implement Open function to load todo.txt from disk
 		pass
 
 	def on_search_changed (self, *args):
+		# TODO: implement Search function to let user look for specific
+		# contexts and projects.
 		pass
-			
+
 	def on_done_toggled (self, cell, path):
 		"""toggles a given task's done status"""
 		todo_store[path][0] = not todo_store[path][0]
@@ -98,7 +101,6 @@ class Handler:
 	def on_completion_edited (self, cell, path, text):
 		"""changes a task's completion date"""
 		todo_store[path][5] = text
-
 
 builder.connect_signals(Handler())
 window.show_all()
