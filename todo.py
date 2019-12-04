@@ -28,8 +28,9 @@ class Handler:
 
 	def on_tasks_treeview_key_release (self, view, event):
 		keyname = Gdk.keyval_name(event.keyval)
-		if keyname == "Delete":
-			self.on_delete_clicked ()
+		# TODO: remove and replace with accelators
+		#if keyname == "Delete":
+		#	self.on_delete_clicked ()
 				
 	def on_quick_add_clicked (self, entry):
 		"""Quickly add a new task to the list"""
@@ -54,9 +55,8 @@ class Handler:
 		entry.set_text ("")
 
 		
-	def on_delete_clicked (self):
+	def on_delete_clicked (self, button):
 		"""deletes currently selected task"""
-		# TODO: (a) prevent this from being called WHILE EDITING
 		# TODO: allow deletions of multiple selected tasks
 		model, i = tasks_treeview.get_selection().get_selected()
 		if i is not None:
