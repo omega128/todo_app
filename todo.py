@@ -56,10 +56,10 @@ class Handler:
 
 		
 	def on_delete_clicked (self, button):
-		"""deletes currently selected task"""
-		# TODO: allow deletions of multiple selected tasks
-		model, i = tasks_treeview.get_selection().get_selected()
-		if i is not None:
+		"""deletes currently selected tasks"""
+		model, paths = tasks_treeview.get_selection().get_selected_rows()
+		for path in paths:
+			i = model.get_iter(path)
 			model.remove(i)
 		
 	def on_save_as_clicked (self, *args):
