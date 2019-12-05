@@ -149,6 +149,113 @@
       </object>
     </child>
   </object>
+  <object class="GtkListStore" id="pri_store">
+    <columns>
+      <!-- column-name priority -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">(A)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(B)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(C)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(D)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(E)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(F)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(G)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(H)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(I)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(J)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(K)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(L)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(M)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(N)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(O)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(P)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(Q)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(R)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(S)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(T)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(U)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(V)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(W)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(X)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(Y)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">(Z)</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes"> </col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="todo_store">
+    <columns>
+      <!-- column-name done -->
+      <column type="gboolean"/>
+      <!-- column-name pri -->
+      <column type="gchararray"/>
+      <!-- column-name text -->
+      <column type="gchararray"/>
+      <!-- column-name due_date -->
+      <column type="gchararray"/>
+      <!-- column-name creation_date -->
+      <column type="gchararray"/>
+      <!-- column-name completion_date -->
+      <column type="gchararray"/>
+      <!-- column-name list -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
   <object class="GtkWindow" id="main_window">
     <property name="can_focus">False</property>
     <property name="icon_name">dialog-ok</property>
@@ -205,6 +312,7 @@
             <property name="can_focus">True</property>
             <property name="hexpand">False</property>
             <property name="vexpand">False</property>
+            <property name="position">261</property>
             <property name="position_set">True</property>
             <property name="wide_handle">True</property>
             <child>
@@ -647,6 +755,25 @@
                     </child>
                   </object>
                 </child>
+                <child>
+                  <object class="GtkTreeViewColumn">
+                    <property name="resizable">True</property>
+                    <property name="title" translatable="yes">List</property>
+                    <property name="clickable">True</property>
+                    <property name="reorderable">True</property>
+                    <property name="sort_column_id">6</property>
+                    <child>
+                      <object class="GtkCellRendererCombo" id="cell_list">
+                        <property name="editable">True</property>
+                        <property name="model">list_store</property>
+                        <property name="text_column">0</property>
+                      </object>
+                      <attributes>
+                        <attribute name="text">6</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
               </object>
               <packing>
                 <property name="resize">True</property>
@@ -660,116 +787,8 @@
             <property name="position">0</property>
           </packing>
         </child>
-        <child>
-          <placeholder/>
-        </child>
       </object>
     </child>
-  </object>
-  <object class="GtkListStore" id="pri_store">
-    <columns>
-      <!-- column-name priority -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">(a)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(b)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(c)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(d)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(e)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(f)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(g)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(h)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(i)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(j)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(k)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(l)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(m)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(n)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(o)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(p)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(q)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(r)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(s)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(t)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(u)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(v)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(w)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(x)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(y)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">(z)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes"> </col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="todo_store">
-    <columns>
-      <!-- column-name done -->
-      <column type="gboolean"/>
-      <!-- column-name pri -->
-      <column type="gchararray"/>
-      <!-- column-name text -->
-      <column type="gchararray"/>
-      <!-- column-name due_date -->
-      <column type="gchararray"/>
-      <!-- column-name creation_date -->
-      <column type="gchararray"/>
-      <!-- column-name completion_date -->
-      <column type="gchararray"/>
-    </columns>
   </object>
   <object class="GtkTreeModelFilter" id="search_store">
     <property name="child_model">todo_store</property>

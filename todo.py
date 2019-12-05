@@ -28,18 +28,28 @@ class Handler:
 
 	def on_quick_add_clicked (self, entry):
 		"""Quickly add a new task to the list"""
-		
-		# TODO: fully parse new task text before adding
-		text = entry.get_text()
-		
+
 		# TODO: make creation dates optional in preferences
 		dt = datetime.date.today().isoformat()
+
+	
+		text = entry.get_text()
+				
+		# TODO: fully parse new task text before adding
+		text_done = False
+		text_pri = " "
+		text_text = text
+		text_due = ""
+		text_creation = dt
+		text_completion = ""
+		text_list = "todo.txt"
+		
 
 		# TODO: add support for filtering and sorting list, by converting
 		# child iterators to sorted iterators.
 
 		# Create new task
-		child_i = todo_store.append([False, "", text, "", dt, ""])
+		child_i = todo_store.append([text_done, text_pri, text_text, text_due, text_creation, text_completion, text_list])
 
 		# Select the new task after we make it.
 		selection = tasks_treeview.get_selection()
@@ -53,9 +63,12 @@ class Handler:
 		"""deletes currently selected tasks"""
 		# TODO: fix bug where menu won't work, while keyboard shortcut does
 
-		# make sure the Treeview has focus, so we don't delete tasks while
+		# TODO: fix bug where delete key is being caught and not going to
+		# treeview editing.
+		
+		# Make sure the Treeview has focus, so we don't delete tasks while
 		# editing text or something of that ilk
-		if tasks_treeview.has_focus() or button.has_focus():
+		if tasks_treeview.has_focus():
 			model, paths = tasks_treeview.get_selection().get_selected_rows()
 			for path in paths:
 				i = model.get_iter(path)
