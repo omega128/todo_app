@@ -254,6 +254,8 @@
       <column type="gchararray"/>
       <!-- column-name list -->
       <column type="gchararray"/>
+      <!-- column-name sensitive -->
+      <column type="gboolean"/>
     </columns>
   </object>
   <object class="GtkWindow" id="main_window">
@@ -676,6 +678,7 @@
                         <signal name="changed" handler="on_pri_changed" swapped="no"/>
                       </object>
                       <attributes>
+                        <attribute name="sensitive">7</attribute>
                         <attribute name="text">1</attribute>
                       </attributes>
                     </child>
@@ -695,6 +698,7 @@
                         <signal name="edited" handler="on_text_edited" swapped="no"/>
                       </object>
                       <attributes>
+                        <attribute name="sensitive">7</attribute>
                         <attribute name="strikethrough">0</attribute>
                         <attribute name="text">2</attribute>
                       </attributes>
@@ -714,6 +718,7 @@
                         <signal name="edited" handler="on_due_edited" swapped="no"/>
                       </object>
                       <attributes>
+                        <attribute name="sensitive">7</attribute>
                         <attribute name="text">3</attribute>
                       </attributes>
                     </child>
@@ -732,6 +737,7 @@
                         <signal name="edited" handler="on_creation_edited" swapped="no"/>
                       </object>
                       <attributes>
+                        <attribute name="sensitive">7</attribute>
                         <attribute name="text">4</attribute>
                       </attributes>
                     </child>
@@ -750,6 +756,7 @@
                         <signal name="edited" handler="on_completion_edited" swapped="no"/>
                       </object>
                       <attributes>
+                        <attribute name="sensitive">7</attribute>
                         <attribute name="text">5</attribute>
                       </attributes>
                     </child>

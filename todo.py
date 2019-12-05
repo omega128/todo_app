@@ -43,13 +43,14 @@ class Handler:
 		text_creation = dt
 		text_completion = ""
 		text_list = "todo.txt"
+		text_sensitive = True
 		
 
 		# TODO: add support for filtering and sorting list, by converting
 		# child iterators to sorted iterators.
 
 		# Create new task
-		child_i = todo_store.append([text_done, text_pri, text_text, text_due, text_creation, text_completion, text_list])
+		child_i = todo_store.append([text_done, text_pri, text_text, text_due, text_creation, text_completion, text_list, text_sensitive])
 
 		# Select the new task after we make it.
 		selection = tasks_treeview.get_selection()
@@ -98,6 +99,9 @@ class Handler:
 		if done:
 			dt = datetime.date.today().isoformat()
 			todo_store[path][5] = dt
+			todo_store[path][7] = False
+		else:
+			todo_store[path][7] = True
 
 	def on_pri_changed (self, cell, path, tree_iter):
 		"""changes the priority of a task"""
