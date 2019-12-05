@@ -34,82 +34,9 @@
       </row>
     </data>
   </object>
-  <object class="GtkMenu" id="menu1">
+  <object class="GtkMenu" id="main_menu">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <child>
-      <object class="GtkMenuItem" id="edit_menu">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="label" translatable="yes">Edit</property>
-        <property name="use_underline">True</property>
-        <child type="submenu">
-          <object class="GtkMenu">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <child>
-              <object class="GtkMenuItem" id="delete_edit_menu_item">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="accel_path">&lt;main_window&gt;edit/delete</property>
-                <property name="label" translatable="yes">Delete</property>
-                <signal name="activate" handler="on_delete_clicked" swapped="no"/>
-                <accelerator key="Delete" signal="activate"/>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuItem" id="archive_edit_menu_item">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Archive</property>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkMenuItem" id="file_menu">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="label" translatable="yes">File</property>
-        <property name="use_underline">True</property>
-        <child type="submenu">
-          <object class="GtkMenu">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <child>
-              <object class="GtkMenuItem" id="new_file_menu_item">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">New</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuItem" id="open_file_menu_item">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Open</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuItem" id="save_file_menu_item">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Save</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuItem" id="save_as_file_menu_item">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Save As</property>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>
     <child>
       <object class="GtkMenuItem" id="preferences_menu_item">
         <property name="visible">True</property>
@@ -155,6 +82,9 @@
       <column type="gchararray"/>
     </columns>
     <data>
+      <row>
+        <col id="0" translatable="yes"> </col>
+      </row>
       <row>
         <col id="0" translatable="yes">(A)</col>
       </row>
@@ -233,10 +163,56 @@
       <row>
         <col id="0" translatable="yes">(Z)</col>
       </row>
-      <row>
-        <col id="0" translatable="yes"> </col>
-      </row>
     </data>
+  </object>
+  <object class="GtkMenu" id="task_menu">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkMenuItem">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Mark this task as Done</property>
+        <property name="use_underline">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Move this task to ...</property>
+        <property name="use_underline">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Move done tasks to ...</property>
+        <property name="use_underline">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Delete task</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_delete_clicked" swapped="no"/>
+      </object>
+    </child>
   </object>
   <object class="GtkListStore" id="todo_store">
     <columns>
@@ -282,7 +258,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="popup">menu1</property>
+            <property name="popup">main_menu</property>
             <property name="use_popover">False</property>
             <child>
               <object class="GtkImage">
@@ -652,6 +628,7 @@
                 <property name="search_column">2</property>
                 <property name="rubber_banding">True</property>
                 <property name="enable_grid_lines">both</property>
+                <signal name="button-release-event" handler="on_tasks_treeview_button_release_event" swapped="no"/>
                 <child internal-child="selection">
                   <object class="GtkTreeSelection"/>
                 </child>

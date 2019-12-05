@@ -22,6 +22,7 @@ pri_store = builder.get_object("pri_store")
 list_store = builder.get_object("list_store")
 sorted_search_store = builder.get_object("sorted_search_store")
 tasks_treeview = builder.get_object("tasks_treeview")
+task_menu = builder.get_object("task_menu")
 
 class Handler:
 	def on_main_window_destroy(self, *args):
@@ -70,11 +71,11 @@ class Handler:
 		
 		# Make sure the Treeview has focus, so we don't delete tasks while
 		# editing text or something of that ilk
-		if tasks_treeview.has_focus():
-			model, paths = tasks_treeview.get_selection().get_selected_rows()
-			for path in paths:
-				i = model.get_iter(path)
-				model.remove(i)
+#		if tasks_treeview.has_focus():
+		model, paths = tasks_treeview.get_selection().get_selected_rows()
+		for path in paths:
+			i = model.get_iter(path)
+			model.remove(i)
 		
 	def on_save_as_clicked (self, *args):
 		# TODO: implement Save As to save task list to disk
@@ -128,6 +129,13 @@ class Handler:
 		"""changes the list associated with a task"""
 		todo_store[path][6] = list_store[tree_iter][0]
 
+	def on_tasks_treeview_button_release_event (self, view, event):
+
+		if event.button == 3:
+			# popup task menu
+			task_menu.popup_at_pointer(event)
+			
+		
 builder.connect_signals(Handler())
 window.show_all()
 Gtk.main()
