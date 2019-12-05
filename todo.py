@@ -63,15 +63,7 @@ class Handler:
 
 		
 	def on_delete_clicked (self, button):
-		"""deletes currently selected tasks"""
-		# TODO: fix bug where menu won't work, while keyboard shortcut does
-
-		# TODO: fix bug where delete key is being caught and not going to
-		# treeview editing.
-		
-		# Make sure the Treeview has focus, so we don't delete tasks while
-		# editing text or something of that ilk
-#		if tasks_treeview.has_focus():
+		"""deletes currently selected tasks"""	
 		model, paths = tasks_treeview.get_selection().get_selected_rows()
 		for path in paths:
 			i = model.get_iter(path)
