@@ -42,7 +42,7 @@ class Handler:
 		text_due = ""
 		text_creation = dt
 		text_completion = ""
-		text_list = "todo.txt"
+		text_list = "/home/kc/Dropbox/gtd/todo.txt"
 		text_sensitive = True
 		
 
