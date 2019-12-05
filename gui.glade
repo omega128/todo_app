@@ -156,6 +156,9 @@
     </columns>
     <data>
       <row>
+        <col id="0" translatable="yes"> </col>
+      </row>
+      <row>
         <col id="0" translatable="yes">(A)</col>
       </row>
       <row>
@@ -232,9 +235,6 @@
       </row>
       <row>
         <col id="0" translatable="yes">(Z)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes"> </col>
       </row>
     </data>
   </object>
