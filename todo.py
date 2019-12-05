@@ -19,6 +19,7 @@ builder.add_from_file("gui.glade")
 window = builder.get_object("main_window")
 todo_store = builder.get_object("todo_store")
 pri_store = builder.get_object("pri_store")
+list_store = builder.get_object("list_store")
 sorted_search_store = builder.get_object("sorted_search_store")
 tasks_treeview = builder.get_object("tasks_treeview")
 
@@ -105,10 +106,7 @@ class Handler:
 
 	def on_pri_changed (self, cell, path, tree_iter):
 		"""changes the priority of a task"""
-	
-		if tree_iter is not None:
-			pri = pri_store[tree_iter][0]
-			todo_store[path][1] = pri
+		todo_store[path][1] = pri_store[tree_iter][0]
 
 	def on_text_edited (self, cell, path, text):
 		"""changes a task's main text"""
@@ -125,6 +123,10 @@ class Handler:
 	def on_completion_edited (self, cell, path, text):
 		"""changes a task's completion date"""
 		todo_store[path][5] = text
+		
+	def on_cell_list_changed (self, cell, path, tree_iter):
+		"""changes the list associated with a task"""
+		todo_store[path][6] = list_store[tree_iter][0]
 
 builder.connect_signals(Handler())
 window.show_all()
